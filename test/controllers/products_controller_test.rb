@@ -50,6 +50,4 @@ assert_redirected_to product_url(@product)
       delete product_url(@product)
     end
   end
-
-    assert_redirected_to products_url
-  end
+end
