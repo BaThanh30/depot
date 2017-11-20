@@ -15,9 +15,9 @@ default from: 'Sam Ruby <deport@sample.com>'
   #
   #   en.order_mailer.shipped.subject
   #
-  def shipped
-    @greeting = "Hi"
+  def shipped(order)
+    @order = order
 
-    mail to: "to@example.org"
+    mail to: "dave@example.org"
   end
 end

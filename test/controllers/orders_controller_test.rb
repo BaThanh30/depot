@@ -10,10 +10,10 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "requires item in cart" do
-get new_order_url
-assert_redirected_to store_index_path
-assert_equal flash[:notice], 'Your cart is empty'
-end
+    get new_order_url
+    assert_redirected_to store_index_path
+    assert_equal flash[:notice], 'Your cart is empty'
+  end
 
   test 'should get new' do
     post line_items_url, params: { product_id: products(:ruby).id }
@@ -46,7 +46,7 @@ end
   end
 
   test 'should destroy order' do
-    assert_difference('Order.count', -1) do
+    assert_difference('Order.count', 1) do
       delete order_url(@order)
     end
 

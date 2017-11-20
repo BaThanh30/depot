@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
+  skip_before_action :authorize, only: [:new, :create]
   include CurrentCart
-
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: [:new]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
@@ -21,29 +21,30 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/1/edit
-  def edit; end
+  def edit;end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
+
     respond_to do |format|
-        if @order.save
-            Cart.destroy(session[:cart_id])
-            session[:cart_id] = nil
-            OrderMailer.received(@order).deliver_later
-            format.html { redirect_to store_index_url, notice:
-              'Thank you for your order.' }
-            format.json { render :show, status: :created,
-              location: @order }
+      if @order.save
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        OrderMailer.received(@order).deliver_later
+        format.html { redirect_to store_index_url, notice:
+          'Thank you for your order.' }
+        format.json { render :show, status: :created,
+          location: @order }
       else
         format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors,
+          status: :unprocessable_entity }
+        end
       end
     end
-  end
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
@@ -72,18 +73,18 @@ class OrdersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_order
-    @order = Order.find(params[:id])
-  end
+    def set_order
+      @order = Order.find(params[:id])
+    end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def order_params
-    params.require(:order).permit(:name, :address, :email, :pay_type)
-  end
-
-  def ensure_cart_isnt_empty
-    if @cart.line_items.empty?
-      redirect_to store_index_url, notice: 'Your cart is empty'
+    def order_params
+      params.require(:order).permit(:name, :address, :email, :pay_type)
     end
-  end
+
+    def ensure_cart_isnt_empty
+      if @cart.line_items.empty?
+          redirect_to store_index_url, notice: 'Your cart is empty'
+      end
+    end
 end

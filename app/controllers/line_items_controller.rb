@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  skip_before_action :authorize , only: :create
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: %i[show edit update destroy]
@@ -19,7 +20,7 @@ class LineItemsController < ApplicationController
   end
 
   # GET /line_items/1/edit
-  def edit 
+  def edit
   end
   # POST /line_items
   # POST /line_items.json

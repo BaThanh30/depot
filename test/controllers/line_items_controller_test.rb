@@ -14,7 +14,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should create line_ite ' do
+  test 'should create line_item ' do
     assert_difference('LineItem.count') do
       post line_items_url, params: { product_id: products(:ruby).id }, xhr: true
     end
