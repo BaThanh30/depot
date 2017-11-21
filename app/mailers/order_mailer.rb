@@ -5,6 +5,8 @@ default from: 'Sam Ruby <deport@sample.com>'
   #
   #   en.order_mailer.received.subject
   #
+
+    
   def received(order)
     @order = order
     mail to: order.email,  subject: 'Pragmatic Store Order Confirmation'

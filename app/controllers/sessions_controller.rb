@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     else
       redirect_to login_url, alert: "Invalid user/password combination"
     end
-  end
+end
 
   def destroy
     session[:user_id] =nil
