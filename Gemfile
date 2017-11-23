@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'mysql2', '~> 0.4.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # Use jquery as the JavaScript library
@@ -44,10 +44,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_girl_rails', '4.2.1'
 end
-
-group :production do
-  gem 'mysql2', '~> 0.4.10'
-  end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

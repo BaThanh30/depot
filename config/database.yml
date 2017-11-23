@@ -31,6 +31,6 @@ production:
   reconnect: false
   database: depot_production
   pool: 5
-  username: root
+  username: thanh
   password: 123QWEasd
   host: localhost
