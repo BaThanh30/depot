@@ -30,8 +30,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # gem 'bcrypt', '~> 3.1.7'
-gem 'mysql2', '~> 0.4.0'
+
 # Use Capistrano for deployment
+gem 'capistrano-rails', group: :development
+gem 'capistrano-rvm', group: :development
+gem 'capistrano-bundler', group: :development
+gem 'capistrano-passenger', group: :development
 # gem 'capistrano-rails', group: :development
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -54,6 +58,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production do
+  gem 'mysql2', '~> 0.4.0'
+end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
